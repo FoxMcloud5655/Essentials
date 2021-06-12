@@ -19,7 +19,7 @@ import org.eclipse.jgit.revwalk.RevWalk
 
 allprojects {
     group = 'net.essentialsx'
-    version = '2.19.0-SNAPSHOT'
+    version = '2.20.0-FOXEDITION'
 }
 
 @SuppressWarnings('GrMethodMayBeStatic')
@@ -183,6 +183,10 @@ subprojects {
 
     // undo https://github.com/KyoriPowered/indra/blob/master/indra-common/src/main/kotlin/net/kyori/indra/IndraPlugin.kt#L57
     archivesBaseName = project.name
+
+	tasks.withType(JavaCompile) {
+		options.warnings = false
+	}
 
     tasks.withType(Jar) {
         archiveVersion.set(fullVersion)
