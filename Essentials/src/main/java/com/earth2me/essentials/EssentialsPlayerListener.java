@@ -712,6 +712,10 @@ public class EssentialsPlayerListener implements Listener {
         if (user.isVanished()) {
             user.setVanished(user.isAuthorized("essentials.vanish"));
         }
+        if (event.getPlayer().getClientViewDistance() > Bukkit.getViewDistance()) {
+            user.sendMessage(tl("viewDistanceWarning", event.getPlayer().getClientViewDistance(), Bukkit.getViewDistance()));
+        }
+        //ess.scheduleSyncDelayedTask(event.getPlayer()::updateInventory, 1);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
