@@ -39,7 +39,10 @@ public class Commandrepair extends EssentialsCommand {
 
     public void repairHand(final User user) throws Exception {
         final ItemStack item = user.getItemInHand();
-        if (item == null || item.getType().isBlock() || item.getDurability() == 0) {
+        if (item == null) {
+            throw new Exception(tl("repairNull"));
+        }
+        if (item.getType().isBlock()) {
             throw new Exception(tl("repairInvalidType"));
         }
 
