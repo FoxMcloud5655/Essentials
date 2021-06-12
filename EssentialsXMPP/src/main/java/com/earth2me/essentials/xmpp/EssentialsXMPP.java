@@ -1,9 +1,7 @@
 package com.earth2me.essentials.xmpp;
 
 import com.earth2me.essentials.IEssentials;
-import com.earth2me.essentials.metrics.MetricsWrapper;
 import net.ess3.api.IUser;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -21,7 +19,6 @@ public class EssentialsXMPP extends JavaPlugin implements IEssentialsXMPP {
     private transient UserManager users;
     private transient XMPPManager xmpp;
     private transient IEssentials ess;
-    private transient MetricsWrapper metrics = null;
 
     static IEssentialsXMPP getInstance() {
         return instance;
@@ -53,11 +50,6 @@ public class EssentialsXMPP extends JavaPlugin implements IEssentialsXMPP {
 
         ess.addReloadListener(users);
         ess.addReloadListener(xmpp);
-
-        if (metrics == null) {
-            metrics = new MetricsWrapper(this, 3818, true);
-            metrics.addCustomChart(new Metrics.SimplePie("config-valid", () -> xmpp.isConfigValid() ? "yes" : "no"));
-        }
     }
 
     @Override
@@ -70,7 +62,6 @@ public class EssentialsXMPP extends JavaPlugin implements IEssentialsXMPP {
 
     @Override
     public boolean onCommand(final CommandSender sender, final Command command, final String commandLabel, final String[] args) {
-        metrics.markCommand(command.getName(), true);
         return ess.onCommandEssentials(sender, command, commandLabel, args, EssentialsXMPP.class.getClassLoader(), "com.earth2me.essentials.xmpp.Command", "essentials.", null);
     }
 

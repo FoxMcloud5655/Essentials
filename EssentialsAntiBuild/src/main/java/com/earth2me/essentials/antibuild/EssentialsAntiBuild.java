@@ -1,6 +1,5 @@
 package com.earth2me.essentials.antibuild;
 
-import com.earth2me.essentials.metrics.MetricsWrapper;
 import org.bukkit.Material;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -14,7 +13,6 @@ public class EssentialsAntiBuild extends JavaPlugin implements IAntiBuild {
     private final transient Map<AntiBuildConfig, Boolean> settingsBoolean = new EnumMap<>(AntiBuildConfig.class);
     private final transient Map<AntiBuildConfig, List<Material>> settingsList = new EnumMap<>(AntiBuildConfig.class);
     private transient EssentialsConnect ess = null;
-    private transient MetricsWrapper metrics = null;
 
     static String getNameForType(final Material type) {
         return type.toString().toLowerCase().replaceAll("_", " ");
@@ -31,10 +29,6 @@ public class EssentialsAntiBuild extends JavaPlugin implements IAntiBuild {
 
         final EssentialsAntiBuildListener blockListener = new EssentialsAntiBuildListener(this);
         pm.registerEvents(blockListener, this);
-
-        if (metrics == null) {
-            metrics = new MetricsWrapper(this, 3813, false);
-        }
     }
 
     @Override

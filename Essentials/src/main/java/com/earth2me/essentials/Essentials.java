@@ -28,7 +28,6 @@ import com.earth2me.essentials.items.AbstractItemDb;
 import com.earth2me.essentials.items.CustomItemResolver;
 import com.earth2me.essentials.items.FlatItemDb;
 import com.earth2me.essentials.items.LegacyItemDb;
-import com.earth2me.essentials.metrics.MetricsWrapper;
 import com.earth2me.essentials.perm.PermissionsDefaults;
 import com.earth2me.essentials.perm.PermissionsHandler;
 import com.earth2me.essentials.signs.SignBlockListener;
@@ -141,7 +140,6 @@ public class Essentials extends JavaPlugin implements net.ess3.api.IEssentials {
     private transient BalanceTopImpl balanceTop;
     private transient ExecuteTimer execTimer;
     private transient I18n i18n;
-    private transient MetricsWrapper metrics;
     private transient EssentialsTimer timer;
     private transient SpawnerItemProvider spawnerItemProvider;
     private transient SpawnerBlockProvider spawnerBlockProvider;
@@ -420,8 +418,6 @@ public class Essentials extends JavaPlugin implements net.ess3.api.IEssentials {
                 }
             });
 
-            metrics = new MetricsWrapper(this, 858, true);
-
             execTimer.mark("Init(External)");
 
             final String timeroutput = execTimer.end();
@@ -649,7 +645,6 @@ public class Essentials extends JavaPlugin implements net.ess3.api.IEssentials {
 
     @Override
     public boolean onCommand(final CommandSender sender, final Command command, final String commandLabel, final String[] args) {
-        metrics.markCommand(command.getName(), true);
         return onCommandEssentials(sender, command, commandLabel, args, Essentials.class.getClassLoader(), "com.earth2me.essentials.commands.Command", "essentials.", null);
     }
 

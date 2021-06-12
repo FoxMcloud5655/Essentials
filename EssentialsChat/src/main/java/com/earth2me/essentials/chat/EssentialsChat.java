@@ -1,6 +1,5 @@
 package com.earth2me.essentials.chat;
 
-import com.earth2me.essentials.metrics.MetricsWrapper;
 import net.ess3.api.IEssentials;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,7 +16,6 @@ import static com.earth2me.essentials.I18n.tl;
 
 public class EssentialsChat extends JavaPlugin {
     private transient IEssentials ess;
-    private transient MetricsWrapper metrics = null;
 
     @Override
     public void onEnable() {
@@ -39,15 +37,10 @@ public class EssentialsChat extends JavaPlugin {
         pluginManager.registerEvents(playerListenerLowest, this);
         pluginManager.registerEvents(playerListenerNormal, this);
         pluginManager.registerEvents(playerListenerHighest, this);
-
-        if (metrics == null) {
-            metrics = new MetricsWrapper(this, 3814, false);
-        }
     }
 
     @Override
     public boolean onCommand(final CommandSender sender, final Command command, final String commandLabel, final String[] args) {
-        metrics.markCommand(command.getName(), true);
         return ess.onCommandEssentials(sender, command, commandLabel, args, EssentialsChat.class.getClassLoader(), "com.earth2me.essentials.chat.Command", "essentials.", null);
     }
 }
