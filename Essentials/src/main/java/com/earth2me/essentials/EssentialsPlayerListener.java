@@ -1,21 +1,26 @@
 package com.earth2me.essentials;
 
-import com.earth2me.essentials.commands.Commandfireball;
-import com.earth2me.essentials.textreader.IText;
-import com.earth2me.essentials.textreader.KeywordReplacer;
-import com.earth2me.essentials.textreader.TextInput;
-import com.earth2me.essentials.textreader.TextPager;
-import com.earth2me.essentials.utils.DateUtil;
-import com.earth2me.essentials.utils.FormatUtil;
-import com.earth2me.essentials.utils.LocationUtil;
-import com.earth2me.essentials.utils.MaterialUtil;
-import com.earth2me.essentials.utils.VersionUtil;
-import io.papermc.lib.PaperLib;
-import net.ess3.api.IEssentials;
-import net.ess3.api.events.AfkStatusChangeEvent;
-import net.essentialsx.api.v2.events.AsyncUserDataLoadEvent;
+import static com.earth2me.essentials.I18n.tl;
+
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
+
 import org.bukkit.BanEntry;
 import org.bukkit.BanList;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -54,23 +59,21 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import java.io.IOException;
-import java.lang.management.ManagementFactory;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
+import com.earth2me.essentials.commands.Commandfireball;
+import com.earth2me.essentials.textreader.IText;
+import com.earth2me.essentials.textreader.KeywordReplacer;
+import com.earth2me.essentials.textreader.TextInput;
+import com.earth2me.essentials.textreader.TextPager;
+import com.earth2me.essentials.utils.DateUtil;
+import com.earth2me.essentials.utils.FormatUtil;
+import com.earth2me.essentials.utils.LocationUtil;
+import com.earth2me.essentials.utils.MaterialUtil;
+import com.earth2me.essentials.utils.VersionUtil;
 
-import static com.earth2me.essentials.I18n.tl;
+import io.papermc.lib.PaperLib;
+import net.ess3.api.IEssentials;
+import net.ess3.api.events.AfkStatusChangeEvent;
+import net.essentialsx.api.v2.events.AsyncUserDataLoadEvent;
 
 public class EssentialsPlayerListener implements Listener {
     private static final Logger LOGGER = Logger.getLogger("Essentials");
@@ -692,17 +695,19 @@ public class EssentialsPlayerListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerChangedWorld(final PlayerChangedWorldEvent event) {
         final User user = ess.getUser(event.getPlayer());
-        final String newWorld = event.getPlayer().getLocation().getWorld().getName();
+        final World newWorld = event.getPlayer().getLocation().getWorld();
+        final String newWorldName = newWorld.getName();
         user.setDisplayNick();
         updateCompass(user);
-        if (ess.getSettings().getNoGodWorlds().contains(newWorld) && user.isGodModeEnabledRaw()) {
+        if (ess.getSettings().getNoGodWorlds().contains(newWorldName) && user.isGodModeEnabledRaw()) {
             // Player god mode is never disabled in order to retain it when changing worlds once more.
             // With that said, players will still take damage as per the result of User#isGodModeEnabled()
             user.sendMessage(tl("noGodWorldWarning"));
+        } else if (user.isGodModeEnabledRaw()) {
+            user.setGodModeEnabled(user.isAuthorized("essentials.god"));
         }
-
-        if (!user.getWorld().getName().equals(newWorld)) {
-            user.sendMessage(tl("currentWorld", newWorld));
+        if (!user.getWorld().getName().equals(newWorldName)) {
+            user.sendMessage(tl("currentWorld", newWorldName));
         }
         if (user.isVanished()) {
             user.setVanished(user.isAuthorized("essentials.vanish"));
