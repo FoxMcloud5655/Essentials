@@ -29,7 +29,7 @@ public class Commandtpr extends EssentialsCommand {
         if (event.isCancelled()) {
             return;
         }
-        randomTeleport.getRandomLocation(event.getCenter(), event.getMinRange(), event.getMaxRange()).thenAccept(location -> {
+        randomTeleport.getRandomLocation(event.getUser(), event.getCenter(), event.getMinRange(), event.getMaxRange()).thenAccept(location -> {
             final CompletableFuture<Boolean> future = getNewExceptionFuture(user.getSource(), commandLabel);
             user.getAsyncTeleport().teleport(location, charge, PlayerTeleportEvent.TeleportCause.COMMAND, future);
             future.thenAccept(success -> {

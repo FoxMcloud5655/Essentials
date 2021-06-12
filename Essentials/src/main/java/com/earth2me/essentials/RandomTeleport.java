@@ -3,6 +3,7 @@ package com.earth2me.essentials;
 import com.earth2me.essentials.utils.LocationUtil;
 import com.earth2me.essentials.utils.VersionUtil;
 import io.papermc.lib.PaperLib;
+import net.ess3.api.IUser;
 import net.ess3.api.InvalidWorldException;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -105,20 +106,11 @@ public class RandomTeleport implements IConf {
     }
 
     // Get a random location; cached if possible. Otherwise on demand.
-    public CompletableFuture<Location> getRandomLocation(final Location center, final double minRange, final double maxRange) {
+    public CompletableFuture<Location> getRandomLocation(IUser user, final Location center, final double minRange, final double maxRange) {
         final int findAttempts = this.getFindAttempts();
-        final Queue<Location> cachedLocations = this.getCachedLocations();
-        // Try to build up the cache if it is below the threshold
-        if (cachedLocations.size() < this.getCacheThreshold()) {
-            cacheRandomLocations(center, minRange, maxRange);
-        }
         final CompletableFuture<Location> future = new CompletableFuture<>();
-        // Return a random location immediately if one is available, otherwise try to find one now
-        if (cachedLocations.isEmpty()) {
-            attemptRandomLocation(findAttempts, center, minRange, maxRange).thenAccept(future::complete);
-        } else {
-            future.complete(cachedLocations.poll());
-        }
+        center.setWorld(user.getBase().getWorld());
+        attemptRandomLocation(findAttempts, center, minRange, maxRange).thenAccept(future::complete);
         return future;
     }
 
