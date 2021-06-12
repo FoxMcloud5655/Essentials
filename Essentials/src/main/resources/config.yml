@@ -5,7 +5,6 @@
 ############################################################
 
 # This is the config file for EssentialsX.
-# This config was generated for version ${full.version}.
 
 # If you want to use special characters in this document, such as accented letters, you MUST save the file as UTF-8, not ANSI.
 # If you receive an error when Essentials loads, ensure that:
@@ -24,10 +23,10 @@
 
 # A color code between 0-9 or a-f. Set to 'none' to disable.
 # In 1.16+ you can use hex color codes here as well. (For example, #613e1d is brown).
-ops-name-color: '4'
+ops-name-color: 'none'
 
 # The character(s) to prefix all nicknames, so that you know they are not true usernames.
-nickname-prefix: '~'
+nickname-prefix: ''
 
 # The maximum length allowed in nicknames. The nickname prefix is included in this.
 max-nick-length: 15
@@ -40,29 +39,29 @@ nick-blacklist:
 
 # When this option is enabled, nickname length checking will exclude color codes in player names.
 # ie: "&6Notch" has 7 characters (2 are part of a color code), a length of 5 is used when this option is set to true
-ignore-colors-in-max-nick-length: false
+ignore-colors-in-max-nick-length: true
 
 # When this option is enabled, display names for hidden users will not be shown. This prevents players from being
 # able to see that they are online while vanished.
-hide-displayname-in-vanish: true
+hide-displayname-in-vanish: false
 
 # Disable this if you have any other plugin, that modifies the displayname of a user.
 change-displayname: true
 
 # When this option is enabled, the (tab) player list will be updated with the displayname.
 # The value of change-displayname (above) has to be true.
-#change-playerlist: true
+change-playerlist: false
 
 # When EssentialsChat.jar isn't used, force essentials to add the prefix and suffix from permission plugins to displayname.
 # This setting is ignored if EssentialsChat.jar is used, and defaults to 'true'.
 # The value of change-displayname (above) has to be true.
 # Do not edit this setting unless you know what you are doing!
-#add-prefix-suffix: false
+add-prefix-suffix: false
 
 # When this option is enabled, player prefixes will be shown in the playerlist.
 # This feature only works for Minecraft version 1.8 and higher.
 # This value of change-playerlist has to be true
-#add-prefix-in-playerlist: true
+add-prefix-in-playerlist: true
 
 # When this option is enabled, player suffixes will be shown in the playerlist.
 # This feature only works for Minecraft version 1.8 and higher. 
@@ -88,20 +87,20 @@ force-safe-teleport-location: false
 teleport-passenger-dismount: true
 
 # The delay, in seconds, required between /home, /tp, etc.
-teleport-cooldown: 0
+teleport-cooldown: 30
 
 # The delay, in seconds, before a user actually teleports. If the user moves or gets attacked in this timeframe, the teleport is cancelled.
-teleport-delay: 0
+teleport-delay: 2
 
 # The delay, in seconds, a player can't be attacked by other players after they have been teleported by a command.
 # This will also prevent the player attacking other players.
-teleport-invulnerability: 4
+teleport-invulnerability: 3
 
 # Whether to make all teleportations go to the center of the block; where the x and z coordinates decimal become .5
 teleport-to-center: true
 
 # The delay, in seconds, required between /heal or /feed attempts.
-heal-cooldown: 60
+heal-cooldown: 120
 
 # Do you want to remove potion effects when healing a player?
 remove-effects-on-heal: true
@@ -133,21 +132,21 @@ item-spawn-blacklist:
 permission-based-item-spawn: false
 
 # Mob limit on the /spawnmob command per execution.
-spawnmob-limit: 10
+spawnmob-limit: 100
 
 # Shall we notify users when using /lightning?
-warn-on-smite: true
+warn-on-smite: false
 
 # Shall we drop items instead of adding to inventory if the target inventory is full?
-drop-items-if-full: false
+drop-items-if-full: true
 
 # Essentials Mail Notification
 # Should we notify players if they have no new mail?
-notify-no-new-mail: true
+notify-no-new-mail: false
 
 # Specifies the duration (in seconds) between each time a player is notified of mail they have.
 # Useful for servers with a lot of mail traffic.
-notify-player-of-mail-cooldown: 60
+notify-player-of-mail-cooldown: 120
 
 # The motd and rules are now configured in the files motd.txt and rules.txt.
 
@@ -235,85 +234,6 @@ mute-commands:
 #
 # To enable this feature, please set use-bukkit-permissions to false.
 player-commands:
-  - afk
-  - afk.auto
-  - back
-  - back.ondeath
-  - balance
-  - balance.others
-  - balancetop
-  - build
-  - chat.color
-  - chat.format
-  - chat.shout
-  - chat.question
-  - clearinventory
-  - compass
-  - depth
-  - delhome
-  - getpos
-  - geoip.show
-  - help
-  - helpop
-  - home
-  - home.others
-  - ignore
-  - info
-  - itemdb
-  - kit
-  - kits.tools
-  - list
-  - mail
-  - mail.send
-  - me
-  - motd
-  - msg
-  - msg.color
-  - nick
-  - near
-  - pay
-  - ping
-  - protect
-  - r
-  - rules
-  - realname
-  - seen
-  - sell
-  - sethome
-  - setxmpp
-  - signs.create.protection
-  - signs.create.trade
-  - signs.break.protection
-  - signs.break.trade
-  - signs.use.balance
-  - signs.use.buy
-  - signs.use.disposal
-  - signs.use.enchant
-  - signs.use.free
-  - signs.use.gamemode
-  - signs.use.heal
-  - signs.use.info
-  - signs.use.kit
-  - signs.use.mail
-  - signs.use.protection
-  - signs.use.repair
-  - signs.use.sell
-  - signs.use.time
-  - signs.use.trade
-  - signs.use.warp
-  - signs.use.weather
-  - spawn
-  - suicide
-  - time
-  - tpa
-  - tpaccept
-  - tpahere
-  - tpdeny
-  - warp
-  - warp.list
-  - world
-  - worth
-  - xmpp
 
 # Use this option to force superperms-based permissions handler regardless of detected installed perms plugin.
 # This is useful if you want superperms-based permissions (with wildcards) for custom permissions plugins.
@@ -323,7 +243,7 @@ use-bukkit-permissions: true
 
 # When this option is enabled, one-time use kits (ie. delay < 0) will be
 # removed from the /kit list when a player can no longer use it
-skip-used-one-time-kits-from-kit-list: false
+skip-used-one-time-kits-from-kit-list: true
 
 # When enabled, armor from kits will automatically be equipped as long as the player's armor slots are empty.
 kit-auto-equip: false
@@ -341,12 +261,12 @@ pastebin-createkit: false
 # Color is not an actual sign, it's for enabling using color codes on signs, when the correct permissions are given.
 
 enabledSigns:
-  #- color
+  - color
   #- balance
-  #- buy
-  #- sell
-  #- trade
-  #- free
+  - buy
+  - sell
+  - trade
+  - free
   #- warp
   #- kit
   #- mail
@@ -400,7 +320,7 @@ backup:
   #command: 'rdiff-backup World1 backups/World1'
 
 # Set this true to enable permission per warp.
-per-warp-permission: false
+per-warp-permission: true
 
 # Sort output of /list command by groups.
 # You can hide and merge the groups displayed in /list by defining the desired behaviour here.
@@ -417,7 +337,7 @@ list:
     #Players: '*'
 
 # Displays real names in /list next to players who are using a nickname.
-real-names-on-list: false
+real-names-on-list: true
 
 # More output to the console.
 debug: false
@@ -427,7 +347,7 @@ debug: false
 # For example, to set language to English, set locale to en, to use the file "messages_en.properties".
 # Don't forget to remove the # in front of the line.
 # For more information, visit http://wiki.ess3.net/wiki/Locale
-#locale: en
+locale: en
 
 # Turn off god mode when people leave the server.
 remove-god-on-disconnect: false
@@ -442,7 +362,7 @@ auto-afk: 300
 # After this timeout in seconds, the user will be kicked from the server.
 # essentials.afk.kickexempt node overrides this feature.
 # Set to -1 for no timeout.
-auto-afk-kick: -1
+auto-afk-kick: 900
 
 # Set this to true, if you want to freeze the player, if the player is AFK.
 # Other players or monsters can't push the player out of AFK mode then.
@@ -452,7 +372,7 @@ freeze-afk-players: false
 
 # When the player is AFK, should he be able to pickup items?
 # Enable this, when you don't want people idling in mob traps.
-disable-item-pickup-while-afk: false
+disable-item-pickup-while-afk: true
 
 # This setting controls if a player is marked as active on interaction.
 # When this setting is false, the player would need to manually un-AFK using the /afk command.
@@ -474,7 +394,7 @@ sleep-ignores-afk-players: true
 # Set the player's list name when they are AFK. This is none by default which specifies that Essentials 
 # should not interfere with the AFK player's list name.
 # You may use color codes, use {USERNAME} the player's name or {PLAYER} for the player's displayname.
-afk-list-name: "none"
+afk-list-name: "&8[AFK]&r {PLAYER}"
 
 # When a player enters or exits AFK mode, should the AFK notification be broadcast
 # to the entire server, or just to the player?
@@ -488,13 +408,13 @@ death-messages: true
 # curse of vanishing when they die?
 # You can set this to "keep" (to keep the item), "drop" (to drop the item), or "delete" (to delete the item).
 # Defaults to "keep"
-vanishing-items-policy: keep
+vanishing-items-policy: delete
 
 # How should essentials handle players with the essentials.keepinv permission who have items with
 # curse of binding when they die?
 # You can set this to "keep" (to keep the item), "drop" (to drop the item), or "delete" (to delete the item).
 # Defaults to "keep"
-binding-items-policy: keep
+binding-items-policy: drop
 
 # When players die, should they receive the coordinates they died at?
 send-info-after-death: false
@@ -502,13 +422,13 @@ send-info-after-death: false
 # Should players with permissions be able to join and part silently?
 # You can control this with essentials.silentjoin and essentials.silentquit permissions if it is enabled.
 # In addition, people with essentials.silentjoin.vanish will be vanished on join.
-allow-silent-join-quit: false
+allow-silent-join-quit: true
 
 # You can set custom join and quit messages here. Set this to "none" to use the default Minecraft message,
 # or set this to "" to hide the message entirely.
-# You may use color codes, {USERNAME} for the player's name, {PLAYER} for the player's displayname, {PREFIX} for the player's prefix, and {SUFFIX} for the player's suffix.
-custom-join-message: "none"
-custom-quit-message: "none"
+# You may use color codes, {USERNAME} for the player's name, and {PLAYER} for the player's displayname.
+custom-join-message: "&a+&r {USERNAME} &r&ehas joined the game!"
+custom-quit-message: "&c-&r {USERNAME} &r&ehas left the game."
 
 # Should Essentials override the vanilla "Server Full" message with its own from the language file?
 # Set to false to keep the vanilla message.
@@ -532,12 +452,12 @@ world-teleport-permissions: false
 # The number of items given if the quantity parameter is left out in /item or /give.
 # If this number is below 1, the maximum stack size size is given. If over-sized stacks.
 # are not enabled, any number higher than the maximum stack size results in more than one stack.
-default-stack-size: -1
+default-stack-size: 1
 
 # Over-sized stacks are stacks that ignore the normal max stack size.
 # They can be obtained using /give and /item, if the player has essentials.oversizedstacks permission.
 # How many items should be in an over-sized stack?
-oversized-stacksize: 64
+oversized-stacksize: 99
 
 # Allow repair of enchanted weapons and armor.
 # If you set this to false, you can still allow it for certain players using the permission.
@@ -546,11 +466,11 @@ repair-enchanted: true
 
 # Allow 'unsafe' enchantments in kits and item spawning.
 # Warning: Mixing and overleveling some enchantments can cause issues with clients, servers and plugins.
-unsafe-enchantments: false
+unsafe-enchantments: true
 
 #Do you want Essentials to keep track of previous location for /back in the teleport listener?
 #If you set this to true any plugin that uses teleport will have the previous location registered.
-register-back-in-listener: false
+register-back-in-listener: true
 
 #Delay to wait before people can cause attack damage after logging in.
 login-attack-delay: 5
@@ -562,7 +482,7 @@ max-fly-speed: 0.8
 max-walk-speed: 0.8
 
 #Set the maximum amount of mail that can be sent within a minute.
-mails-per-minute: 1000
+mails-per-minute: 60
 
 # Set the maximum time /mute can be used for in seconds.
 # Set to -1 to disable, and essentials.mute.unlimited can be used to override.
@@ -586,10 +506,10 @@ last-message-reply-recipient-timeout: 180
 # Changes the default /reply functionality.
 # If true, /reply will not check if the person you're replying to has vanished.
 # If false, players will not be able to /reply to players who they can no longer see due to vanish.
-last-message-reply-vanished: false
+last-message-reply-vanished: true
 
 # Toggles whether or not left clicking mobs with a milk bucket turns them into a baby.
-milk-bucket-easter-egg: true
+milk-bucket-easter-egg: false
 
 # Toggles whether or not the fly status message should be sent to players on join
 send-fly-enable-on-join: true
@@ -631,7 +551,7 @@ allow-selling-named-items: false
 
 # Delay for the MOTD display for players on join, in milliseconds.
 # This has no effect if the MOTD command or permission are disabled.
-delay-motd: 0
+delay-motd: 500
 
 # A list of commands that should have their complementary confirm commands enabled by default.
 # This is empty by default, for the latest list of valid commands see the latest source config.yml.
@@ -640,11 +560,11 @@ default-enabled-confirm-commands:
 #- clearinventory
 
 # Whether or not to teleport a player back to their previous position after they have been freed from jail.
-teleport-back-when-freed-from-jail: true
+teleport-back-when-freed-from-jail: false
 
 # Whether or not jail time should only be counted while the user is online.
 # If true, a jailed player's time will only decrement when they are online.
-jail-online-time: false
+jail-online-time: true
 
 # Set the timeout, in seconds for players to accept a tpa before the request is cancelled.
 # Set to 0 for no timeout.
@@ -677,7 +597,7 @@ max-projectile-speed: 8
 # Should EssentialsX check for updates?
 # If set to true, EssentialsX will show notifications when a new version is available.
 # This uses the public GitHub API and no identifying information is sent or stored.
-update-check: true
+update-check: false
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -703,11 +623,9 @@ world-home-permissions: false
 # For more information, visit http://wiki.ess3.net/wiki/Multihome
 sethome-multiple:
   default: 3
-  vip: 5
-  staff: 10
-
-# In this example someone with 'essentials.sethome.multiple' and 'essentials.sethome.multiple.vip' will have 5 homes.
-# Remember, they MUST have both permission nodes in order to be able to set multiple homes.
+  seeker: 5
+  master: 10
+  staff: 50
 
 # Controls whether players need the permission "essentials.home.compass" in order to point
 # the player's compass at their first home.
@@ -718,7 +636,7 @@ compass-towards-home-perm: false
 
 # If no home is set, would you like to send the player to spawn?
 # If set to false, players will not be teleported when they run /home without setting a home first.
-spawn-if-no-home: true
+spawn-if-no-home: false
 
 # Should players be asked to provide confirmation for homes which they attempt to overwrite?
 confirm-home-overwrite: false
@@ -769,7 +687,7 @@ economy-log-enabled: false
 economy-log-update-enabled: false
 
 # Minimum acceptable amount to be used in /pay.
-minimum-pay-amount: 0.001
+minimum-pay-amount: 0.01
 
 # Enable this to block users who try to /pay another user which ignore them.
 pay-excludes-ignore-list: false
@@ -777,7 +695,7 @@ pay-excludes-ignore-list: false
 # The format of currency, excluding symbols. See currency-symbol-format-locale for symbol configuration.
 #
 # "#,##0.00" is how the majority of countries display currency.
-#currency-format: "#,##0.00"
+currency-format: "#,##0.00"
 
 # Format currency symbols. Some locales use , and . interchangeably.
 # Some formats do not display properly in-game due to faulty Minecraft font rendering.
@@ -785,7 +703,7 @@ pay-excludes-ignore-list: false
 # For 1.234,50 use de-DE
 # For 1,234.50 use en-US
 # For 1'234,50 use fr-ch
-#currency-symbol-format-locale: en-US
+currency-symbol-format-locale: en-US
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -840,9 +758,7 @@ chat:
   # {TEAMPREFIX} - The sender's scoreboard team prefix.
   # {TEAMSUFFIX} - The sender's scoreboard team suffix.
 
-  format: '<{DISPLAYNAME}> {MESSAGE}'
-  #format: '&7[{GROUP}]&r {DISPLAYNAME}&7:&r {MESSAGE}'
-  #format: '&7{PREFIX}&r {DISPLAYNAME}&r &7{SUFFIX}&r: {MESSAGE}'
+  format: '{PREFIX}{SUFFIX}{NICKNAME}&r: {MESSAGE}'
 
   group-formats:
   #  default: '{WORLDNAME} {DISPLAYNAME}&7:&r {MESSAGE}'
@@ -1068,16 +984,15 @@ newbies:
   # If so, use this format, replacing {DISPLAYNAME} with the player name.
   # If not, set to ''
   #announce-format: ''
-  announce-format: '&dWelcome {DISPLAYNAME}&d to the server!'
+  announce-format: '&dWelcome &f{DISPLAYNAME}&d to the server!'
 
   # When we spawn for the first time, which spawnpoint do we use?
   # Set to "none" if you want to use the spawn point of the world.
-  spawnpoint: newbies
+  spawnpoint: vagabond
 
   # Do we want to give users anything on first join? Set to '' to disable
   # This kit will be given regardless of cost and permissions, and will not trigger the kit delay.
-  #kit: ''
-  kit: tools
+  kit: ''
 
 # What priority should we use for handling respawns?
 # Set this to none, if you want vanilla respawning behaviour.
@@ -1113,3 +1028,4 @@ spawn-on-join: false
 #- admin
 
 # End of file <-- No seriously, you're done with configuration.
+
