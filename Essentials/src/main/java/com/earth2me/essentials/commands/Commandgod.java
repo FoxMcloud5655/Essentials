@@ -32,12 +32,6 @@ public class Commandgod extends EssentialsToggleCommand {
         ess.getServer().getPluginManager().callEvent(godEvent);
         if (!godEvent.isCancelled()) {
             user.setGodModeEnabled(enabled);
-
-            if (enabled && user.getBase().getHealth() != 0) {
-                user.getBase().setHealth(user.getBase().getMaxHealth());
-                user.getBase().setFoodLevel(20);
-            }
-
             user.sendMessage(tl("godMode", enabled ? tl("enabled") : tl("disabled")));
             if (!sender.isPlayer() || !sender.getPlayer().equals(user.getBase())) {
                 sender.sendMessage(tl("godMode", tl(enabled ? "godEnabledFor" : "godDisabledFor", user.getDisplayName())));
