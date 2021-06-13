@@ -19,7 +19,7 @@ import org.eclipse.jgit.revwalk.RevWalk
 
 allprojects {
     group = 'net.essentialsx'
-    version = '2.20.1-FOXEDITION'
+    version = '2.20.2-FOXEDITION'
 }
 
 @SuppressWarnings('GrMethodMayBeStatic')
