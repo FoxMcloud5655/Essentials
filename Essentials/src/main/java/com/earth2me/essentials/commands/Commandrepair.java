@@ -43,7 +43,8 @@ public class Commandrepair extends EssentialsCommand {
             throw new Exception(tl("repairNull"));
         }
         if (item.getType().isBlock()) {
-            throw new Exception(tl("repairInvalidType"));
+            user.sendMessage("DEBUG: Appears to be a block; continuing anyways.");
+            //throw new Exception(tl("repairInvalidType"));
         }
 
         if (!item.getEnchantments().isEmpty() && !ess.getSettings().getRepairEnchanted() && !user.isAuthorized("essentials.repair.enchanted")) {
@@ -80,7 +81,7 @@ public class Commandrepair extends EssentialsCommand {
 
     private void repairItem(final ItemStack item) throws Exception {
         final Material material = item.getType();
-        if (material.isBlock() || material.getMaxDurability() < 1) {
+        if (material.getMaxDurability() < 1) {
             throw new Exception(tl("repairInvalidType"));
         }
 
