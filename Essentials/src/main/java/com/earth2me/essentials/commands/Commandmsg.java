@@ -5,7 +5,6 @@ import static com.earth2me.essentials.I18n.tl;
 import java.util.List;
 
 import org.bukkit.Server;
-import org.bukkit.Sound;
 
 import com.earth2me.essentials.CommandSource;
 import com.earth2me.essentials.Console;
@@ -55,7 +54,6 @@ public class Commandmsg extends EssentialsLoopCommand {
     protected void updatePlayer(final Server server, final CommandSource sender, final User messageReceiver, final String[] args) {
         final IMessageRecipient messageSender = sender.isPlayer() ? ess.getUser(sender.getPlayer()) : Console.getInstance();
         messageSender.sendMessage(messageReceiver, args[0]); // args[0] is the message.
-        messageReceiver.getBase().playSound(messageReceiver.getLocation(), Sound.ENTITY_CHICKEN_EGG, 1, 2);
     }
 
     @Override

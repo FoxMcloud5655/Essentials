@@ -5,6 +5,8 @@ import com.earth2me.essentials.IUser;
 import com.earth2me.essentials.User;
 import net.ess3.api.events.PrivateMessagePreSendEvent;
 import net.ess3.api.events.PrivateMessageSentEvent;
+
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.lang.ref.WeakReference;
@@ -153,7 +155,9 @@ public class SimpleMessageRecipient implements IMessageRecipient {
         }
         // Display the formatted message to this recipient.
         sendMessage(tl("msgFormat", sender.getDisplayName(), tl("meRecipient"), message));
-
+        if (user != null) {
+            user.getBase().playSound(user.getLocation(), Sound.ENTITY_CHICKEN_EGG, 1, 2);
+        }
         if (isLastMessageReplyRecipient) {
             // If this recipient doesn't have a reply recipient, initiate by setting the first
             // message sender to this recipient's replyRecipient.
